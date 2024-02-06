@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://sl3qh6a28oje"]
+
+[ext_resource type="PackedScene" uid="uid://w7txrompw8v3" path="res://Scenes/player/player.tscn" id="1_nghim"]
+[ext_resource type="Script" path="res://Scenes/main/StartTimer.gd" id="2_aprsr"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_nghim")]
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+script = ExtResource("2_aprsr")
+
+[node name="StartPosition" type="Marker2D" parent="."]
