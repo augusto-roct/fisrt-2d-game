@@ -8,7 +8,6 @@ func _ready():
 	new_game()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
@@ -16,12 +15,14 @@ func _process(delta):
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	set_process(not is_processing())
 	
 
 func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	set_process(not is_processing())
 
 
 func _on_score_timer_timeout():
