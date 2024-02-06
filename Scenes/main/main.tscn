@@ -1,9 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://sl3qh6a28oje"]
 
 [ext_resource type="PackedScene" uid="uid://w7txrompw8v3" path="res://Scenes/player/player.tscn" id="1_nghim"]
-[ext_resource type="Script" path="res://Scenes/main/StartTimer.gd" id="2_aprsr"]
+
+[sub_resource type="Curve2D" id="Curve2D_qss8d"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 722, 0, 0, 0, 0, -1, 722, 0, 0, 0, 0, -1, 360, 0, 0, 0, 0, -1, -1)
+}
+point_count = 6
 
 [node name="Main" type="Node2D"]
+metadata/_edit_group_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_nghim")]
 
@@ -15,6 +21,9 @@ wait_time = 0.5
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-script = ExtResource("2_aprsr")
 
 [node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_qss8d")
