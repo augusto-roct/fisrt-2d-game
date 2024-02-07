@@ -5,7 +5,7 @@ var score
 
 
 func _ready():
-	new_game()
+	pass
 
 
 func _process(delta):
@@ -17,9 +17,16 @@ func game_over():
 	$MobTimer.stop()
 	set_process(not is_processing())
 	
+	$HUD.show_game_over()
+	
+	get_tree().call_group("mobs", "queue_free")
 
 func new_game():
 	score = 0
+	
+	$HUD.update_score(score)
+	$HUD.show_message("Get Ready")
+	
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	set_process(not is_processing())
@@ -27,11 +34,15 @@ func new_game():
 
 func _on_score_timer_timeout():
 	score += 1
+	$HUD.update_score(score)
 
 
 func _on_start_timer_timeout():
-	$MobTimer.start()
-	$ScoreTimer.start()
+	if $MobTimer.is_stopped():
+		$MobTimer.start()
+	
+	if $ScoreTimer.is_stopped():
+		$ScoreTimer.start()
 
 
 func _on_mob_timer_timeout():
