@@ -15,6 +15,8 @@ func _process(delta):
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$Music.stop()
+	$DeathSound.play()
 	set_process(not is_processing())
 	
 	$HUD.show_game_over()
@@ -29,6 +31,7 @@ func new_game():
 	
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	$Music.play()
 	set_process(not is_processing())
 
 
